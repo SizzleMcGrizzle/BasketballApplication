@@ -32,3 +32,6 @@ target/
 
 # OS
 .DS_Store
+src/main/java/META-INF/MANIFEST.MF
+src/main/java/META-INF/MANIFEST.MF
+out/artifacts/BasketballApplication_jar/BasketballApplication.jar

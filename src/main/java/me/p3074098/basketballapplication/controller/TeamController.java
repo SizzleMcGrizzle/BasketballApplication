@@ -2,10 +2,14 @@ package me.p3074098.basketballapplication.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+
+import java.io.IOException;
 
 public class TeamController extends AnchorPane {
     
@@ -33,28 +37,52 @@ public class TeamController extends AnchorPane {
     
     private int score = 0;
     
-    @FXML
-    private void onScoreButtonClick(ActionEvent e) {
-        Button source = (Button) e.getSource();
+    public TeamController() {
+        super();
         
-        int add;
-        if (source.equals(oneButton))
-            add = 1;
-        else if (source.equals(twoButton))
-            add = 2;
-        else
-            add = 3;
+        try {
+            
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("team.fxml"));
+            
+            loader.setController(this);
+            
+            Node n = loader.load();
+            
+            this.getChildren().add(n);
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         
-        score += add;
-        
-        render();
+        setListeners();
     }
     
-    @FXML
-    private void onResetButtonClick(ActionEvent e) {
-        score = 0;
+    private void setListeners() {
+        Button[] scoreButtons = {oneButton, twoButton, threeButton};
         
-        render();
+        for (Button scoreButton : scoreButtons) {
+            scoreButton.addEventHandler(ActionEvent.ACTION, e -> {
+                Button source = (Button) e.getSource();
+                
+                int add;
+                if (source.equals(oneButton))
+                    add = 1;
+                else if (source.equals(twoButton))
+                    add = 2;
+                else
+                    add = 3;
+                
+                score += add;
+                
+                render();
+            });
+        }
+        
+        resetButton.addEventHandler(ActionEvent.ACTION, e -> {
+            score = 0;
+            
+            render();
+        });
     }
     
     public void render() {
