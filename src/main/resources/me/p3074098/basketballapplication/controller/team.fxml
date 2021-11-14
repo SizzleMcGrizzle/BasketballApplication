@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!-->
+
+This component tree is made using SceneBuilder. While SceneBuilder is not required for this, it made the whole
+process 100 times faster.
+
+This file is similar to HTML in that we have elements that can have properties defined when defining the element.
+
+<-->
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>

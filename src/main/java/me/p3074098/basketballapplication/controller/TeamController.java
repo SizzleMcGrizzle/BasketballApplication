@@ -14,6 +14,13 @@ import java.io.IOException;
 public class TeamController extends AnchorPane {
     
     
+    /**
+     * The @FXML annotation will let JavaFX know that this is a
+     * component in our team.fxml file that has an fx:id
+     * <p>
+     * JavaFX will automatically assign a value to these variables,
+     * to which we can then use in our program
+     */
     @FXML
     private TextField nameTextInput;
     
@@ -37,6 +44,18 @@ public class TeamController extends AnchorPane {
     
     private int score = 0;
     
+    /**
+     * This constructor will make a new FXMLLoader object (necessary for loading a .fxml file)
+     * <p>
+     * Then, it will set the controller class to this class, so we can use all the child
+     * elements of the team.fxml component tree, giving us access to the buttons, text labels, etc.
+     * <p>
+     * After, we will use the load() method from FXMLLoader to load it, which returns a Node, but in our case,
+     * given that this class extends AnchorPane, it will return an AnchorPane (but we can just make the type a Node
+     * because AnchorPane IS A Node).
+     * <p>
+     * Then, we will apply listeners to the buttons so when they are clicked they will perform specific actions.
+     */
     public TeamController() {
         super();
         
@@ -57,28 +76,34 @@ public class TeamController extends AnchorPane {
         setListeners();
     }
     
+    /**
+     * In this method, we add event handlers to each of our buttons. In these handlers, we
+     * are listening to the ActionEvent.ACTION event, which is the event called when a
+     * button is clicked,
+     * <p>
+     * After specifying which event in each handler, we add the actual logic for when a
+     * button is clicked. This uses a lambda, which means that we define an event variable
+     * name, in this case event, use the "->" convention, and put curly brackets to inline a
+     * method, then we fill in the logic. This is identical to adding event handlers in javascript
+     * using arrow functions.
+     */
     private void setListeners() {
-        Button[] scoreButtons = {oneButton, twoButton, threeButton};
+        oneButton.addEventHandler(ActionEvent.ACTION, event -> {
+            score += 1;
+            render();
+        });
         
-        for (Button scoreButton : scoreButtons) {
-            scoreButton.addEventHandler(ActionEvent.ACTION, e -> {
-                Button source = (Button) e.getSource();
-                
-                int add;
-                if (source.equals(oneButton))
-                    add = 1;
-                else if (source.equals(twoButton))
-                    add = 2;
-                else
-                    add = 3;
-                
-                score += add;
-                
-                render();
-            });
-        }
+        twoButton.addEventHandler(ActionEvent.ACTION, event -> {
+            score += 2;
+            render();
+        });
         
-        resetButton.addEventHandler(ActionEvent.ACTION, e -> {
+        threeButton.addEventHandler(ActionEvent.ACTION, event -> {
+            score += 3;
+            render();
+        });
+        
+        resetButton.addEventHandler(ActionEvent.ACTION, event -> {
             score = 0;
             
             render();
@@ -88,10 +113,4 @@ public class TeamController extends AnchorPane {
     public void render() {
         scoreLabel.setText(String.valueOf(score));
     }
-    
-    public AnchorPane getAnchor() {
-        return anchor;
-    }
-    
-    
 }

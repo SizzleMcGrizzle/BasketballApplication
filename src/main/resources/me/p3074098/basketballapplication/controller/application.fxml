@@ -6,6 +6,11 @@
             minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="me.p3074098.basketballapplication.controller.ApplicationController">
+    <!-->
+        The <TeamController> component is a custom component that links to the TeamController class.
+        When the program reads the <TeamController /> declaration, it will automatically instantiate
+        a TeamController object, calling the constructor. See the constructor for more details.
+    <-->
     <TeamController/>
     <TeamController layoutX="400.0"/>
 </AnchorPane>
