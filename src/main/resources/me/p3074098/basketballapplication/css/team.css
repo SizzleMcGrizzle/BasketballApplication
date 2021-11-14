@@ -1,0 +1,27 @@
+.anchor {
+    -fx-background-color: lightgray;
+}
+
+.nameTextInput {
+    -fx-background-color: gray;
+    -fx-background-radius: 5px;
+}
+
+.scoreLabel {
+    -fx-background-color: #333;
+    -fx-background-radius: 5px;
+}
+
+.scoreButton {
+    -fx-background-radius: 5px;
+    -fx-background-color: orange;
+}
+
+.resetButton {
+    -fx-background-radius: 5px;
+    -fx-background-color: gray;
+}
+
+.dropShadow {
+         -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 20, 0.1, 0.0, 0.0);
+}
